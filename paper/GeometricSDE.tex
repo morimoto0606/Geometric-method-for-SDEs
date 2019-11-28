@@ -1,0 +1,150 @@
+\documentclass[12pt]{article}
+
+%\pdfoutput=1
+\usepackage{amsthm,amsmath}
+\usepackage{amssymb}
+%\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{mediabb}
+%\RequirePackage[colorlinks,citecolor=blue,urlcolor=blue]{hyperref}
+
+%
+\topmargin=-45pt  \headheight=12truept \headsep=25pt
+\footskip=37pt \hoffset=0pt \voffset=12pt
+\oddsidemargin=0cm \evensidemargin=0cm
+\textheight=23.7cm \textwidth=16.0cm
+
+\def \nequiv {\equiv \hspace{-3mm} / \hspace{1mm}}
+\def \qed {\hfill \hbox {\rule [-2pt]{3pt}{6pt}}}
+%\pagestyle{myheadings}
+%%%%%%%%%%%%%
+\newtheorem{thm}{Theorem}%[chapter]% THEOREM
+\newtheorem{theorem}[thm]{Theorem}
+\newtheorem{prop}[thm]{Proposition}% PROPOSITION
+\newtheorem{proposition}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}% COROLLARY
+\newtheorem{corollary}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}% LEMMA
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{remark}[thm]{Remark}
+\newtheorem{defi}[thm]{Definition}
+\newtheorem{definition}[thm]{Definition}
+%\newtheorem{example}[thm]{Example}
+
+\def\Z{{\mathbf{Z}}}
+\def\R{{\mathbf{R}}}
+\def\N{{\mathbf{N}}}
+\def\Z{{\mathbf{Z}}}
+\def\T{{\mathbf{T}}}
+\def\C{{\mathbf{C}}}
+\def\M{{\mathcal{M}}}
+\def\Cy{{\mathcal{C}}}
+\def\D{{\mathcal{D}}}
+\def\A{{\mathcal{A}}}
+\def\E{{\mathcal{E}}}
+\def\G{{\mathcal{G}}}
+\def\F{{\mathcal{F}}}
+\def\L{{\mathcal{L}}}
+
+\begin{document}
+\title{Geometrization for the representaion \\ of the solution of SDEs}
+\author{
+Yusuke MORIMOTO 
+\thanks{
+ The Bank of Tokyo-Mitsubishi UFJ, Ltd,
+2-7-1 Marunouchi, Chiyoda-ku, Tokyo 100-8388, Japan, \
+E-mail: yuusuke.morimoto@gmail.com} 
+and Makiko SASADA
+\thanks{
+Graduate School of Mathematical Sciences, 
+The University of Tokyo, 
+3-8-1 Komaba, Meguro-ku, Tokyo 153-8914, Japan, \
+E-mail: sasada@ms.u-tokyo.ac.jp}
+}
+\date{}
+
+\maketitle
+
+\begin{abstract}
+It is well known that the solution of stochastic differentiable equations a explicit solution
+
+\end{abstract}
+
+JEL classification: C63, G12
+
+Mathematical Subject Classification(2010): 65C05, 60G40
+
+Keywords: computational finance, option pricing, Lie Algebra, SABR model, Heston model
+
+
+
+\section{Introduction}
+We consider $N$-dimensional Stratonovich stochastic differential equation 
+\begin{equation}\label{sde}
+X(t,x) = x + \sum_{i=0}^{d} \int_{0}^{t} V_{i}(X(s,x))\circ dB^i(s),
+\end{equation}
+where $N, d \geqq 1,$
+$W_0$ $ = \{ w\in C([0,\infty );{\bf R}^d); \; w(0) = 0 \} ,$
+${\cal F}$ be the Borel algebra over $W_0$ 
+and $\mu$ be the Wiener measure on $(W_0,{\cal F}).$
+Let $B^i:[0,\infty )\times W_0 \to {\bf R},$ $i=1,\ldots ,d,$ be given 
+by $B^i(t,w) =w^i(t),$ $(t,w)\in [0,\infty )\times W_0.$
+Then $ \{ (B^1(t), \ldots ,B^d(t) ; t \in [0,\infty ) \}$ 
+is a $d$-dimensional Brownian motion.
+Let $B^0(t) = t,$ $t \in [0,\infty ).$
+Let $V_0,V_1,\ldots ,V_d$ 
+$ \in C^{\infty}_b({\bf R}^N;{\bf R}^N).$
+Here $C^{\infty}_b({\bf R}^N;{\bf R}^n)$ denotes 
+the space of ${\bf R}^n$-valued smooth functions defined 
+in ${\bf R}^N$ whose derivatives of any order are bounded.
+
+\section{Geometrization}
+\begin{equation*}
+X(t,x) = x + \sum_{i=0}^{d} \int_{0}^{t} V_{i}(X(s,x))\circ dB^i(s)
+\end{equation*}
+
+\begin{prop}
+    Assume $\xi$ and $\eta$ are the solution of following equations.
+    \begin{align}
+       d \eta(t)  =  \left(\left(\xi(t)^{-1} \right)_* V_0\right)(\eta(t)) dt, \\
+       d \xi(t) = \sum_{\alpha=1}^d V_i \left(\xi(t) \right)\circ dB^{\alpha}(t).
+    \end{align}
+    Then $X$ defined by $X(t) = \xi(t) \circ \eta(t) \circ x$ satisfies the equation (\ref{sde}).
+\end{prop}
+
+\begin{prop}
+    $$\xi(t) : M \rightarrow N, $$ is a differeomorphis. It also satisfies
+    $$\xi^{-1}(t)_* : T_{\xi_t(x)}N \rightarrow T_{x}M$$
+    \begin{align}
+        &\left( \xi^{-1}(t) \right)_* \left(\sum_{j=1}^n V^j\left(\xi_t(x)\right) \frac{\partial}{\partial y^j} \right) (x)\\
+        =  &\sum_{i=1}^n \left(\sum_{j=1}^n V^j\left(\xi_t(x) \right) \left( \frac{\partial \left(\xi^{-1}_t(y)\right)^i}{\partial y^j} \right)_{y=\xi_t(x)} \right)\frac{\partial}{\partial x^i}.
+    \end{align}
+\end{prop}
+
+\begin{prop}
+    \begin{align}
+       d \eta^j(t) =  \sum_{j=1}^n V_0^j \left( \xi_t \left( \zeta_t \right) \right)  \sum_{i=1}^n \left( \frac{\partial \left(\xi^{-1}_t(y)\right)^i}{\partial y^j} \right)_{y=\xi_t(x)} dt
+    \end{align}
+\end{prop}
+
+\begin{prop}
+    Let 
+    $$J(t) = \left( \frac{\partial \left(\xi_t(x)\right)^i}{\partial x^j} \right)$$
+    $\xi^{-1}$ satisfies the following equation.
+   \begin{align}
+      &d (J^{-1}(t))^i_j  = -\sum_{\alpha=1}^d \sum_{k=1}^n (J^{-1}(t))^i_k \left(\frac{\partial }{\partial {x_j}} V^k_{\alpha}(\xi(t)) \right) \circ dB^{\alpha}(t),\\
+      &(J^{-1}(i))^i_j = \delta^i_j.
+   \end{align}
+\end{prop}
+
+\begin{defi}
+$$j^H : \bf{R}^d \times \mathcal{E}$$
+\end{defi}
+
+\begin{thm}
+    Assume $V_0 = 0.$
+    Let $\A_k()$
+\end{thm}
+\end{document}
+
